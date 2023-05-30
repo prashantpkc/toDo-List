@@ -16,8 +16,17 @@ export default function App() {
   const handleDelete = (index) => {
     let temp = [...todos];
     // temp.splice(index, 1);
-   let res = temp.filter((ele,ind)=> ind !== index)
-    setTodos(res)
+    let res = temp.filter((ele, ind) => ind !== index);
+    setTodos(res);
+  };
+
+  const handleUpdate = (index) => {
+    let updatedValue = prompt('Enter the updated value:');
+    if (updatedValue) {
+      let temp = [...todos];
+      temp[index] = updatedValue;
+      setTodos(temp);
+    }
   };
 
   return (
@@ -31,7 +40,10 @@ export default function App() {
           return (
             <ul>
               <li key={index}>{todo}</li>
+
               <button onClick={() => handleDelete(index)}>Delete</button>
+
+              <button onClick={() => handleUpdate(index)}>Update</button>
             </ul>
           );
         })}
